@@ -29,7 +29,7 @@ function Signup() {
     return (
         <div className='flex items-center justify-center'>
             <div className={`mx-auto w-full max-w-lg rounded-xl bg-gray-100 border p-10 border-black/10`}>
-                <span className='inline-block w-full max-w-[100px]'> <Logo width='100%' /> </span>
+                <span className='inline-block w-full max-w-25'> <Logo width='100%' /> </span>
             </div>
             <h2 className='text-2xl font-bold'>Sign Up</h2>
             <p className='mt-2 text-center text-base text-black/60'> Already have an account? <Link to='/login' className='text-blue-500 hover:underline'>
