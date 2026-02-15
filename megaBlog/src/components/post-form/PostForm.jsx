@@ -5,7 +5,7 @@ import appwriteService from '../../appwrite/config'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-function PostForm({ post }) {
+export default function PostForm({ post }) {
     const { register, handleSubmit, setValue, watch, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || '',
@@ -16,7 +16,7 @@ function PostForm({ post }) {
     })
 
     const navigate = useNavigate()
-    const userData = useSelector((state) => state.user.userData)
+    const userData = useSelector((state) => state.auth.userData)
 
     const submit = async (data) => {
         if (post) {
@@ -55,7 +55,8 @@ function PostForm({ post }) {
 
     const slugTransform = useCallback((value) => {
         if (value && typeof value === 'string')
-            return value.trim().toLowerCase().replace(/^[a-zA-Z\d\s]+/g, '-').replace(/\s/g, '-')
+            return value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-+|-+$/g, "");
         return ''
 
     }, [])
@@ -64,7 +65,7 @@ function PostForm({ post }) {
 
         const subscription = watch((value, { name }) => {
             if (name === 'title') {
-                setValue('slug', slugTransform(value.title, { shouldValidate: true }))
+                setValue('slug', slugTransform(value.title), { shouldValidate: true })
             }
         })
 
@@ -121,5 +122,3 @@ function PostForm({ post }) {
         </form>
     )
 }
-
-export default PostForm

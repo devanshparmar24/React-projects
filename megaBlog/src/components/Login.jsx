@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Login as authLogin } from '../store/authSlice'
+import { login as authLogin } from '../store/authSlice'
 import { Button, Input, Logo } from './index'
 import { useDispatch } from 'react-redux'
 import authService from '../appwrite/auth'
@@ -29,20 +29,20 @@ function Login() {
     }
 
     return (
-        <div className={`mx-auto w-full max-w-lg bg-gray-100 
-        rounded-xl p-10 border border-black/10`} >
-            <div className='flex justify-center mb-2'>
-                <span className='inline-block w-full max-w-25'>
-                    <Logo width='100%' />
-                </span>
-            </div>
-            <div>
-                <h2 className='text-2xl font-bold text-center mb-4'>Login to your account</h2>
-                <p className='text-center text-sm mb-6'>
+        <div className='flex items-center justify-center w-full'>
+            <div className={`mx-auto w-full max-w-lg bg-gray-100 
+                rounded-xl p-10 border border-black/10`} >
+                <div className='flex justify-center mb-2'>
+                    <span className='inline-block w-full max-w-[100px]'>
+                        <Logo width='100%' />
+                    </span>
+                </div>
+                <h2 className='text-2xl font-bold text-center leading-tight'>Login to your account</h2>
+                <p className='text-center text-base mt-2 text-black/60'>
                     Don't have an account?
-                    <Link to='/signup' className='text-blue-500'>Register</Link>
+                    <Link to='/signup' className='text-blue-500'>Sign up</Link>
                 </p>
-                {error && <p className='text-red-500 text-center mb-4'>{error}</p>}
+                {error && <p className='text-red-600 text-center mt-8'>{error}</p>}
                 <form onSubmit={handleSubmit(login)} className='mt-8'>
                     <div className='space-y-5'>
                         <Input
@@ -61,13 +61,14 @@ function Login() {
                             type='password'
                             {...register('password', { required: true })}
                         />
-                        <Button type='submit' fullWidth>
+                        <Button type='submit' className='w-full'>
                             Sign In
                         </Button>
                     </div>
                 </form>
             </div>
         </div>
+
     )
 }
 
