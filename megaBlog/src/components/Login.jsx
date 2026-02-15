@@ -33,7 +33,7 @@ function Login() {
             <div className={`mx-auto w-full max-w-lg bg-gray-100 
                 rounded-xl p-10 border border-black/10`} >
                 <div className='flex justify-center mb-2'>
-                    <span className='inline-block w-full max-w-[100px]'>
+                    <span className='inline-block w-full max-w-25'>
                         <Logo width='100%' />
                     </span>
                 </div>
